@@ -1,0 +1,588 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jurnal visual Aurel Azico tentang eksplorasi pulau, laut, dan freediving pemula di Kepulauan Bangka Belitung.">
+  <title>Aurel Azico | Island Exploration Journal</title>
+
+  <style>
+    :root {
+      --navy: #173b43;
+      --teal: #2c827d;
+      --mint: #dcece5;
+      --cream: #f8f5ed;
+      --text: #25434a;
+      --muted: #687f82;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 6%;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .brand {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: #7fd0bf;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 13px;
+    }
+
+    .nav-links a:hover {
+      color: #91d9c8;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 76px 7%;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--navy);
+      line-height: 1.12;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5vw, 66px);
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 4vw, 45px);
+      margin-bottom: 18px;
+    }
+
+    p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .hero-photo {
+      height: 490px;
+      overflow: hidden;
+      background: var(--mint);
+      border-radius: 4px;
+    }
+
+    .hero-photo img {
+      transition: opacity .25s ease;
+    }
+
+    .photo-caption {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 22px;
+      margin-top: 8px;
+      border-radius: 3px;
+      background: var(--navy);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .button:hover {
+      background: var(--teal);
+    }
+
+    section.content {
+      padding: 76px 7%;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    .section-heading p {
+      max-width: 360px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-auto-rows: 250px;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--mint);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      transition: transform .4s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-item figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 40px 17px 16px;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(transparent, rgba(0, 25, 30, .85));
+    }
+
+    .gallery-item figcaption small {
+      display: block;
+      font-weight: 400;
+      opacity: .9;
+    }
+
+    .freedive {
+      background: var(--mint);
+    }
+
+    .freedive-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .freedive-photo {
+      height: 390px;
+      background: #c5dfd6;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .note {
+      padding: 18px;
+      border-left: 3px solid var(--teal);
+      background: rgba(255, 255, 255, .6);
+      margin-top: 18px;
+      color: var(--text);
+    }
+
+    .destinations {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .destination {
+      padding: 24px;
+      border: 1px solid #d7e2dc;
+      background: rgba(255, 255, 255, .55);
+    }
+
+    .destination h3 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .about {
+      text-align: center;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    footer {
+      padding: 30px 7%;
+      text-align: center;
+      background: var(--navy);
+      color: white;
+      font-size: 13px;
+    }
+
+    footer p {
+      color: #d0e2df;
+      margin: 4px 0;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .9);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      width: auto;
+      height: auto;
+      max-width: 92vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      border: 0;
+      color: white;
+      background: transparent;
+      font-size: 36px;
+      cursor: pointer;
+    }
+
+    .image-error {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      color: #8a3b35;
+      background: #f1d8d2;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 5%;
+      }
+
+      .nav-links {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .hero,
+      .freedive-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 48px 6%;
+        gap: 26px;
+      }
+
+      .hero-photo {
+        height: 350px;
+      }
+
+      section.content {
+        padding: 52px 6%;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 210px;
+      }
+
+      .gallery-item:first-child {
+        grid-row: span 1;
+      }
+
+      .destinations {
+        grid-template-columns: 1fr;
+      }
+
+      .freedive-photo {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <a class="brand" href="#home">AUREL <span>AZICO.</span></a>
+
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="#home">Beranda</a>
+      <a href="#explore">Eksplorasi</a>
+      <a href="#gallery">Galeri</a>
+      <a href="#freediving">Freediving</a>
+      <a href="#about">Tentang Saya</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">Personal Island Exploration Journal</div>
+        <h1>Menemukan cerita di setiap pulau.</h1>
+        <p>
+          Saya Aurel Azico. Saya tertarik menjelajahi keindahan alam,
+          pesisir, dan pulau-pulau di Kepulauan Bangka Belitung.
+        </p>
+        <p>
+          Melalui foto dan catatan perjalanan, saya ingin mengabadikan
+          tempat-tempat yang saya kunjungi sambil belajar menghargai laut
+          dan lingkungan di sekitarnya.
+        </p>
+        <p>
+          Saya juga sedang belajar freediving sebagai pemula dengan
+          mengutamakan keselamatan dan kelestarian ekosistem laut.
+        </p>
+        <a class="button" href="#gallery">Lihat Galeri Saya</a>
+      </div>
+
+      <div>
+        <div class="hero-photo">
+          <img src="images/freedive-aurel.jpeg"
+               alt="Dokumentasi perjalanan Aurel Azico">
+        </div>
+        <p class="photo-caption">Mengabadikan momen, menyimpan cerita, dan terus belajar.</p>
+      </div>
+    </section>
+
+    <section class="content" id="explore">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Island Notes</div>
+          <h2>Jelajah alam dan pesisir</h2>
+        </div>
+        <p>
+          Setiap perjalanan memberi kesempatan untuk melihat keindahan
+          alam dari sudut pandang yang berbeda.
+        </p>
+      </div>
+
+      <div class="destinations">
+        <article class="destination">
+          <h3>Pantai dan pesisir</h3>
+          <p>Menikmati garis pantai, pasir, bebatuan granit, dan suasana laut.</p>
+        </article>
+        <article class="destination">
+          <h3>Eksplorasi pulau</h3>
+          <p>Mengenal karakter setiap pulau serta menjaga kebersihan lingkungan.</p>
+        </article>
+        <article class="destination">
+          <h3>Jurnal visual</h3>
+          <p>Mengumpulkan foto dan cerita kecil dari pengalaman perjalanan.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content" id="gallery">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">My Visual Diary</div>
+          <h2>Potongan cerita dari setiap perjalanan.</h2>
+        </div>
+        <p>Galeri pribadi tentang perjalanan, pesisir, dan proses belajar mengenal laut.</p>
+      </div>
+
+      <div class="gallery">
+        <figure class="gallery-item">
+          <img src="images/freedive-aurel.jpeg"
+               alt="Foto perjalanan Aurel Azico">
+          <figcaption>Ocean Memories<small>Catatan perjalanan</small></figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="images/jelajah-pulau.jpeg"
+               alt="Perjalanan bersama teman di pantai">
+          <figcaption>Island Memories<small>Perjalanan di pesisir</small></figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="images/freedive-potret.jpeg"
+               alt="Potret Aurel saat berpetualang">
+          <figcaption>Into the Blue<small>Perjalanan mengenal laut</small></figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="images/bawah-laut.jpeg"
+               alt="Dokumentasi bawah laut">
+          <figcaption>Underwater Journal<small>Keindahan bawah laut</small></figcaption>
+        </figure>
+
+        <figure class="gallery-item">
+          <img src="images/keindahan-bangka-belitung.jpeg"
+               alt="Dokumentasi alam Bangka Belitung">
+          <figcaption>Bangka Belitung<small>Keindahan rumah sendiri</small></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="content freedive" id="freediving">
+      <div class="freedive-layout">
+        <div>
+          <div class="eyebrow">Learning Beneath the Surface</div>
+          <h2>Perjalanan saya sebagai freediver pemula.</h2>
+          <p>
+            Mengenal laut dari dekat adalah pengalaman belajar yang
+            membutuhkan rasa ingin tahu, kesabaran, dan tanggung jawab.
+          </p>
+          <p>
+            Sebagai pemula, saya ingin terus mempelajari teknik yang benar,
+            memahami kondisi diri, dan menghormati lingkungan bawah laut.
+          </p>
+          <div class="note">
+            Keselamatan adalah prioritas: jangan pernah melakukan freediving
+            sendirian. Berlatihlah bersama pendamping terlatih dan ikuti
+            pelatihan keselamatan yang sesuai.
+          </div>
+        </div>
+
+        <div class="freedive-photo">
+          <img src="images/bawah-laut.jpeg"
+               alt="Pemandangan bawah laut untuk jurnal freediving">
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="about">
+      <div class="about">
+        <div class="eyebrow">A Little About Me</div>
+        <h2>Belajar, menjelajah, dan menjaga alam.</h2>
+        <p>
+          Saya percaya bahwa perjalanan bukan hanya tentang menemukan
+          tempat baru, tetapi juga tentang belajar melihat lingkungan
+          dengan lebih peduli. Website ini menjadi jurnal visual untuk
+          menyimpan dokumentasi dan pengalaman saya.
+        </p>
+        <a class="button" href="#home">Kembali ke Atas</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>AUREL AZICO.</strong></p>
+    <p>Personal Island Exploration Journal</p>
+    <p>Menjelajahi alam, menghargai laut, dan terus belajar.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-label="Tampilan foto besar">
+    <button class="close-lightbox" id="closeLightbox" aria-label="Tutup foto">&times;</button>
+    <img id="lightboxImage" src="" alt="Foto diperbesar">
+  </div>
+
+  <script>
+    // Beri tanda jika file gambar tidak ditemukan.
+    document.querySelectorAll("img").forEach(function (img) {
+      img.addEventListener("error", function () {
+        console.error("Gambar gagal dimuat:", img.getAttribute("src"));
+        img.alt = "Foto tidak ditemukan: " + img.getAttribute("src");
+        img.classList.add("image-error");
+      });
+    });
+
+    // Galeri: klik foto untuk memperbesar.
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+
+    document.querySelectorAll(".gallery-item img").forEach(function (img) {
+      img.addEventListener("click", function () {
+        if (!img.complete || img.naturalWidth === 0) {
+          return;
+        }
+
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add("open");
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightboxImage.src = "";
+    }
+
+    document.getElementById("closeLightbox").addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", function (event) {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
